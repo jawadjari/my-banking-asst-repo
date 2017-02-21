@@ -1,6 +1,5 @@
 .idea
 node_modules
-client/node_modules
 client/jspm_packages
 client/npm-debug.*
 client/link-checker-results.txt
@@ -10,3 +9,4 @@ client/e2e/**/*.js
 client/e2e/**/*.js.map
 client/_test-output
 client/_temp
+sendgrid.env
