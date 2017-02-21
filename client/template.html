@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chat upgraded template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/bootstrap.css?1422792965" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/materialadmin.css?1425466319" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/libs/wizard/wizard.css" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/font-awesome.min.css?1422529194" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/material-design-iconic-font.min.css?1421434286" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/owl.theme.min.css" />
+	
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+	  <base href="" />
+    
+		<div class="container-fluid no-padding content-wrap" style="background: #FFF;height: 100vh;overflow:hidden;box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);">
+			<div class="content col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 no-padding">	
+				<div class="" style="height:7vh">
+					<header id="header" class="header-fixed">
+						<div class="headerbar">
+							<!-- Brand and toggle get grouped for better mobile display -->
+							<div class="headerbar-left">
+								<ul class="header-nav header-nav-options">
+									<li>
+										<a  class="btn btn-icon-toggle">
+											<i id="open-button" style="width:100%;height: 100%;color:white;" class="fa fa-bars"></i>
+											<span style="color:white;"> Heritage bank cognitive assistant</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</header>
+					<div class="menu-wrap">
+						<nav class="menu">
+							<div class="icon-list">
+								<a href="#"><i class="fa fa-fw fa-money"></i><span>Pay Bills</span></a>
+								<a href="#"><i class="fa fa-fw fa-newspaper-o"></i><span>Load Airtime</span></a>
+								<a href="#"><i class="fa fa-fw fa-envelope-o"></i><span>Account Opening</span></a>
+								<a href="#"><i class="fa fa-fw fa-bell-o"></i><span>FAQ!</span></a>
+							</div>
+						</nav>
+						<button class="close-button" id="close-button">Close Menu</button>
+					</div>
+				</div>
+				<div id="offcanvas-chat" class="style-default-light active" style="padding-top:2vh;height:85vh; transform: translate(0px, 0px);background:#FFF;">
+					<div class="nano has-scrollbar"><div class="nano-content" tabindex="0" style="right: -17px;"><div class="offcanvas-body">
+						<div class="capabilities">
+							<div style="width:150px;margin:0 auto;"><img src="./assets/img/logo/hblogo.png" style="width:100%" /></div>
+							<p class="text-center" style="color:#00C34B;">Welcome to heritage bank cognitive assistant
+								<br/>How may i be of help?
+							</p>
+						</div>
+						<ul class="list-chats">
+							<li class="conversation-chat">
+								<div class="chat">
+									<div class="chat-avatar"></div>
+									<div class="chat-body">
+										Yes, it is indeed very beautiful.
+										<small>10:03 pm</small>
+									</div>
+								</div><!--end .chat -->
+							</li>
+							<li class="conversation-chat chat-left">
+								<div class="chat">
+									<div class="chat-avatar"></div>
+									<div class="chat-body">
+										Did you see the changes?
+										<small>10:02 pm</small>
+									</div>
+								</div><!--end .chat -->
+							</li>
+							<li class="conversation-chat">
+								<div class="chat">
+									<div class="chat-avatar"></div>
+									<div class="chat-body">
+										I just arrived at work, it was quite busy.
+										<small>06:44pm</small>
+									</div>
+									<div class="chat-body">
+										I will take look in a minute.
+										<small>06:45pm</small>
+									</div>
+								</div><!--end .chat -->
+							</li>
+							<li class="conversation-form">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="">
+											<h4 class="text-center" style="color:#00C34B">Savings Account form</h4>
+										</div>
+										<div class="card">
+											<div class="card-body ">
+												<div id="rootwizard2" class="form-wizard form-wizard-horizontal">
+													<form class="form floating-label form-validation" role="form" novalidate="novalidate">
+														<div class="form-wizard-nav">
+															<div class="progress" style="width: 75%;"><div class="progress-bar progress-bar-primary" style="width: 0%;"></div></div>
+															<ul class="nav nav-justified nav-pills">
+																<li class="active"><a href="#step1" data-toggle="tab"><span class="step">1</span> <span class="title">PERSONAL</span></a></li>
+																<li><a href="#step2" data-toggle="tab"><span class="step">2</span> <span class="title">ACCOUNT</span></a></li>
+																<li><a href="#step3" data-toggle="tab"><span class="step">3</span> <span class="title">SETTINGS</span></a></li>
+																<li><a href="#step4" data-toggle="tab"><span class="step">4</span> <span class="title">CONFIRM</span></a></li>
+															</ul>
+														</div><!--end .form-wizard-nav -->
+														<div class="tab-content clearfix">
+															<div class="tab-pane active" id="step1">
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<input type="text" name="firstname" id="firstname" class="form-control" data-rule-minlength="2" required="" aria-required="true" aria-describedby="firstname-error" aria-invalid="true"><span id="firstname-error" class="help-block">This field is required.</span>
+																			<label for="firstname" class="control-label">First name</label>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<input type="text" name="lastname" id="lastname" class="form-control" data-rule-minlength="2" required="" aria-required="true" aria-describedby="lastname-error"><span id="lastname-error" class="help-block">This field is required.</span>
+																			<label for="lastname" class="control-label">Last name</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<input type="text" name="occupation" id="occupation" class="form-control" data-rule-minlength="3" required="" aria-required="true" aria-describedby="occupation-error"><span id="occupation-error" class="help-block">This field is required.</span>
+																	<label for="occupation" class="control-label">Occupation</label>
+																</div>
+															</div><!--end #step1 -->
+															<div class="tab-pane" id="step2">
+																<br><br>
+																<div class="form-group">
+																	<input type="email" name="email" id="email" class="form-control" data-rule-email="true" required="" aria-required="true">
+																	<label for="email" class="control-label">Email</label>
+																</div>
+																<div class="row">
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<input type="password" name="password1" id="password1" class="form-control" required="" data-rule-minlength="5" aria-required="true">
+																			<label for="password1" class="control-label">Password</label>
+																		</div>
+																	</div>
+																	<div class="col-sm-6">
+																		<div class="form-group">
+																			<input type="password" name="passwordrepeat" id="passwordrepeat" class="form-control" data-rule-equalto="#password1" required="" aria-required="true">
+																			<label for="passwordrepeat" class="control-label">Repeat password</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<div class="checkbox">
+																		<label class="checkbox">
+																			<input type="checkbox" id="cb2" name="remember" required="" aria-required="true"> Send personal information.
+																		</label>
+																	</div>
+																</div>
+															</div><!--end #step2 -->
+															<div class="tab-pane" id="step3">
+																<br><br>
+																<div class="form-group">
+																	<input type="text" name="url2" id="url2" class="form-control" data-rule-url="true" required="" aria-required="true">
+																	<label for="url2" class="control-label">URL</label>
+																	<p class="help-block">Starts with http:// </p>
+																</div>
+																<div class="form-group">
+																	<input type="text" name="rangelength2" id="rangelength2" class="form-control" data-rule-rangelength="[5, 10]" required="" aria-required="true">
+																	<label for="rangelength2" class="control-label">Range restriction</label>
+																	<p class="help-block">Between 5 and 10 </p>
+																</div>
+															</div><!--end #step3 -->
+															<div class="tab-pane" id="step4">
+																<br><br>
+																<div class="form-group">
+																	<div class="form-group">
+																		<select id="Age2" name="Age" class="form-control">
+																			<option value="">&nbsp;</option>
+																			<option value="30">30</option>
+																			<option value="40">40</option>
+																			<option value="50">50</option>
+																			<option value="60">60</option>
+																			<option value="70">70</option>
+																		</select>
+																		<label for="Age2">Age</label>
+																		<p class="help-block">This is supporting text for this field.</p>
+																	</div>
+																</div>
+																<div class="form-group">
+																	<textarea name="textarea1" id="textarea1" class="form-control" rows="3"></textarea>
+																	<label>Textarea</label>
+																</div>
+															</div><!--end #step4 -->
+														</div><!--end .tab-content -->
+														<ul class="pager wizard">
+															<li class="previous first disabled"><a class="btn-raised" href="javascript:void(0);">First</a></li>
+															<li class="previous disabled"><a class="btn-raised" href="javascript:void(0);">Previous</a></li>
+															<li class="next last"><a class="btn-raised" href="javascript:void(0);">Last</a></li>
+															<li class="next"><a class="btn-raised" href="javascript:void(0);">Next</a></li>
+														</ul>
+													</form>
+												</div><!--end #rootwizard -->
+											</div><!--end .card-body -->
+										</div><!--end .card -->
+									</div><!--end .col -->
+								</div>
+							</li>
+							<li class="conversation-more">
+								<div class="col-md-12 no-padding">
+									<div class="card card-bordered style-primary">
+										<div class="card-head">
+											<header><i class="fa fa-fw fa-tag"></i> Header</header>
+										</div><!--end .card-head -->
+										<div class="card-body style-default-bright">
+											<p>This section can be used to explain more about a feature/module and also redirect the user to another link.</p>
+							
+										</div><!--end .card-body -->
+										<div class="card-actionbar">
+											<div class="card-actionbar-row">
+												<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">View more</a>
+												<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-primary ink-reaction">Fill Form</a>
+											</div>
+										</div>
+									</div><!--end .card -->
+								</div>
+								<div class="clearfix"></div>
+							</li>
+							<li class="conversation-image">
+								<div class="col-md-12 no-padding">
+									<div class="card">
+										<div class="card-body style-default-bright">
+											<img src="http://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(51).jpg" width="100%" />
+										</div><!--end .card-body -->
+										<div class="card-actionbar">
+											<div class="card-actionbar-row">
+												<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">View more</a>
+												<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-primary ink-reaction">Fill Form</a>
+											</div>
+										</div>
+									</div><!--end .card -->
+								</div>
+								<div class="clearfix"></div>
+							</li>
+							<li class="conversation-carousel">
+								<!--Carousel Wrapper-->
+								<div class="owl-carousel owl-theme" id="owl-slider">
+									<div class="item">
+										<div class="card">
+											<img class="img-fluid" src="./assets/img/logo/account-opening.png" width="100%" alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Savings</h4>
+												<p class="card-text">Enter description of savings account here.</p>
+												<a class="btn btn-primary btn-xs waves-effect waves-light">Choose Package</a>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="card">
+											<img class="img-fluid" src="./assets/img/logo/account-opening.png" width="100%" alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Current account</h4>
+												<p class="card-text">Enter description of current account here.</p>
+												<a class="btn btn-primary btn-xs waves-effect waves-light">Choose Package</a>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="card">
+											<img class="img-fluid" src="./assets/img/logo/account-opening.png" width="100%" alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Domiciliary account</h4>
+												<p class="card-text">description of domicialiary account here.</p>
+												<a class="btn btn-primary btn-xs waves-effect waves-light">Choose Package</a>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<div class="card">
+											<img class="img-fluid" src="./assets/img/logo/account-opening.png" width="100%" alt="Card image cap">
+											<div class="card-body">
+												<h4 class="card-title">Joint account</h4>
+												<p class="card-text">Description of joint account here.</p>
+												<a class="btn btn-primary btn-xs waves-effect waves-light">Choose Package</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!--/.Carousel Wrapper-->
+							</li>
+							<li class="conversation-buttons">
+								<div class="col-md-12 no-padding">
+									<div class="card card-bordered style-primary">
+										<div class="card-head">
+											<header><i class="fa fa-fw fa-tag"></i> What network provider are you using?</header>
+										</div><!--end .card-head -->
+										<div class="card-body style-default-bright">
+											<button class="btn ink-reaction btn-warning">MTN</button>
+											<button class="btn ink-reaction btn-primary">GLOBACOM</button>
+											<button class="btn ink-reaction btn-default-dark">ETISALAT</button>
+											<button class="btn ink-reaction btn-danger">AIRTEL</button>
+										</div><!--end .card-body -->
+									</div><!--end .card -->
+								</div>
+								<div class="clearfix"></div>
+							</li>
+							<li class="conversation-checkboxes">
+								<div class="col-md-12 no-padding">
+									<div class="card card-bordered style-primary">
+										<div class="card-head">
+											<header><i class="fa fa-fw fa-tag"></i> Tick all that applies</header>
+										</div><!--end .card-head -->
+										<div class="card-body style-default-bright">
+											<div class="col-sm-12">
+												<label class="checkbox-inline checkbox-styled checkbox-success">
+													<input type="checkbox" value="option1"><span>LOW COT</span>
+												</label>
+												<label class="checkbox-inline checkbox-styled checkbox-success">
+													<input type="checkbox" value="option3"><span>HIGH YTD</span>
+												</label>
+												<label class="checkbox-inline checkbox-styled checkbox-success">
+													<input type="checkbox" value="option3"><span>LOW MINIMUM BALANCE</span>
+												</label>
+												<label class="checkbox-inline checkbox-styled checkbox-success">
+													<input type="checkbox" value="option2"><span>HIGH INTEREST</span>
+												</label>
+											</div>
+										</div><!--end .card-body -->
+									</div><!--end .card -->
+								</div>
+								<div class="clearfix"></div>
+								
+							</li>
+							<li class="conversation-maps">
+								<div class="col-md-12 no-padding">
+									<div class="card card-bordered style-primary">
+										<div class="card-head">
+											<header><i class="fa fa-fw fa-tag"></i> Showing closest bank branches</header>
+										</div><!--end .card-head -->
+										<div class="card-body style-default-bright">
+											<div id="basic-map" class="border-gray height-10"></div>
+							
+										</div><!--end .card-body -->
+										<div class="card-actionbar">
+											<div class="card-actionbar-row">
+												<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">Get Directions</a>
+											</div>
+										</div>
+									</div><!--end .card -->
+								</div>
+								<div class="clearfix"></div>
+							</li>
+						</ul>
+					</div></div><div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 646px; transform: translate(0px, 0px);"></div></div></div><!--end .offcanvas-body -->
+				</div>
+				<div class="" style="background: #FFF;">
+					<form class="form">
+						<div class="form-group">
+							<input autofocus="" placeholder="Type a message" class="form-control autosize" style="border:solid 1px #CCC;overflow: hidden; word-wrap: break-word; resize: horizontal; height: 38px;padding:0 10px;">
+								<!--<label for="sidebarChatMessage">Leave a message</label>--> /
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		
+
+    <script src="./assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+	<script src="./assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script src="./assets/js/libs/bootstrap/bootstrap.min.js"></script>
+	<script src="./assets/js/libs/spin.js/spin.min.js"></script>
+	<script src="./assets/js/libs/autosize/jquery.autosize.min.js"></script>
+	<script src="./assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+	<script src="./assets/js/core/source/App.js"></script>
+	<script src="./assets/js/core/source/AppNavigation.js"></script>
+	<script src="./assets/js/core/source/AppOffcanvas.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&amp;key=AIzaSyCaFiiyJLSZNfT5D2sBiWzSK1MDo41e-JA&amp;sensor=false"></script>
+	<script src="./assets/js/libs/gmaps/gmaps.js"></script>
+	<script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script>
+	<script src="./assets/js/core/source/AppCard.js"></script>
+	<script src="./assets/js/core/source/AppForm.js"></script>
+	<script src="./assets/js/core/source/AppNavSearch.js"></script>
+	<script src="./assets/js/core/source/AppVendor.js"></script>
+	<script src="./assets/js/core/demo/Demo.js"></script>
+	<script src="./assets/js/classie.js"></script>
+	<script src="./assets/js/core/demo/DemoPageMaps.js"></script>
+	<script src="./assets/js/app.js"></script>
+  </body>
+</html>

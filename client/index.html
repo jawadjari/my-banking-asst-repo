@@ -1,38 +1,96 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Personal Banking Assistant</title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans+Condensed:300|Roboto:100,400" rel="stylesheet">
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" />
-		<link rel="stylesheet" href="assets/bootstrap.darkly.min.css" />
-		<link rel="stylesheet" href="assets/scrollbar.css" />	
+  <head>
+    <title>Chat upgraded template</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link href='http://fonts.googleapis.com/css?family=Roboto:300italic,400italic,300,400,500,700,900' rel='stylesheet' type='text/css'/>-->
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/bootstrap.css?1422792965" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/materialadmin.css?1425466319" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/libs/wizard/wizard.css" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/font-awesome.min.css?1422529194" />
+	<link type="text/css" rel="stylesheet" href="./assets/css/theme-default/material-design-iconic-font.min.css?1421434286" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/owl.carousel.css" />
+	<link rel="stylesheet" type="text/css" href="./assets/css/owl.theme.min.css" />
+	
+	<link rel="stylesheet" type="text/css" href="./assets/css/datepicker/date-picker.css" />
+	
+	<link rel="stylesheet" type="text/css" href="./assets/css/fileinput/file-input.css" />
+	<link rel="stylesheet" type="text/css" href="node_modules/sweetalert2/dist/sweetalert2.css">
+    <link rel="stylesheet" href="styles.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.4.1/sweetalert2.js"></script> 
+	<!--<script src="node_modules/sweetalert2/dist/sweetalert2.min.js"></script>-->
+	
+
+
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
 		
-		<link rel="stylesheet" href="styles.css">
+		
 
-		<!-- Polyfill(s) for older browsers -->
-		<script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app').catch(function(err){ console.error(err); });
+    </script>
+	<script src="./assets/js/libs/jquery/jquery-1.11.2.min.js"></script>
+	<script src="./assets/js/datepicker/date-picker.js"></script>	
+  </head>
 
-		<script src="node_modules/zone.js/dist/zone.js"></script>
-		<script src="node_modules/systemjs/dist/system.src.js"></script>
-
-		<script src="systemjs.config.js"></script>
+  <body>
+	  <base href="" />
+	  <div id="offcanvas-width" class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2"></div>
+    <my-app>
+		<div class="container-fluid">
+			<div class="width:100%">
+				<div style="width:200px;margin:0 auto;">
+						<img src="./assets/img/logo/logo.png" style="width:100%;margin-top:100%;" />
+						
+				</div>
+				<h3 class="text-center">Watson is <span class="rotate">Loading..., Perceiving, Parsing Intents, Processing Dialogues, Getting Possibilities</span>. Please wait!</h3>
+			</div>
+		</div>
+    </my-app>
+  	
+		<script src="./assets/js/simple-rotator.js"></script>
 		<script>
-		System.import('app').catch(function(err){ console.error(err); });
+				$(".rotate").textrotator({
+					animation: "dissolve", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
+					separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
+					speed: 1000 // How many milliseconds until the next word show.
+				});
 		</script>
-		<script src="https://use.fontawesome.com/c042f05fc4.js"></script>
-		<script src="bower_components/jquery/dist/jquery.min.js"></script> 
-	</head>
-
-	<body style="overflow: hidden;">
-		<base href="/" />
-		<my-app>Initiating Jamen ...</my-app>
-
+		<script src="./assets/js/libs/jquery/jquery-migrate-1.2.1.min.js"></script>
+		<script src="./assets/js/libs/bootstrap/bootstrap.min.js"></script>
+		<script src="./assets/js/libs/spin.js/spin.min.js"></script>
+		<script src="./assets/js/libs/autosize/jquery.autosize.min.js"></script>
 		
-		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<script src="assets/scrollbar.js"></script>
+		<script src="./assets/js/libs/nanoscroller/jquery.nanoscroller.min.js"></script>
+		<script src="./assets/js/core/source/App.js"></script>
+		<script type="text/javascript" src="./assets/js/owl.carousel.min.js"></script>
+		<script src="./assets/js/core/source/AppNavigation.js"></script>
+		<script src="./assets/js/core/source/AppOffcanvas.js"></script>
 		
-	</body>
+		<script src="./assets/js/core/source/AppCard.js"></script>
+		<script src="./assets/js/core/source/AppForm.js"></script>
+		<script src="./assets/js/core/source/AppNavSearch.js"></script>
+		<script src="./assets/js/core/source/AppVendor.js"></script>
+		<script src="./assets/js/libs/jquery-validation/dist/jquery.validate.min.js"></script>		
+		<script src="./assets/js/libs/jquery-validation/dist/additional-methods.min.js"></script>						
+		<script src="./assets/js/libs/wizard/jquery.bootstrap.wizard.min.js"></script>		
+		<script src="./assets/js/core/demo/Demo.js"></script>
+		<script src="./assets/js/core/demo/DemoFormWizard.js"></script>
+		<script src="./assets/js/fileinput/file-input.js"></script>
+
+
+		<script src="./assets/js/app.js"></script>
+		<script>
+			$(document).on("click", "#triggerSwal", function(event) {
+				alert("yaaay")
+			})
+		</script>
+  </body>
 </html>

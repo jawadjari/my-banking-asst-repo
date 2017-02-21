@@ -1,21 +1,27 @@
 {
-  "name": "my_node_watson",
+  "name": "banking-chat-template",
   "version": "1.0.0",
-  "description": "creating my own watson project without the boilerplate",
+  "description": "Upgraded template for banking application",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "debaryour@gmail.com",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.15.2",
     "cloudant": "^1.6.2",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
     "mongodb": "^2.2.20",
     "mongojs": "^2.4.0",
     "mongoose": "^4.7.6",
+    "nano": "^6.2.0",
+    "nodemailer": "^2.7.2",
     "watson-developer-cloud": "^2.14.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }

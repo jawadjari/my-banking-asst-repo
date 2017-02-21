@@ -1,0 +1,1311 @@
+<div id="offcanvas-chat" class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 style-default-light active" style="padding-top:2vh;height:85vh; transform: translate(0px, 0px);background:#FFF;">
+    <div class="" id="scroll-main">
+        <div class="" id="widthControl" tabindex="0" style="right: -17px;"><div class="offcanvas-body">
+        
+        <div class="capabilities">
+            <div style="width:150px;margin:0 auto;"><img src="./assets/img/logo/hblogo.png" style="width:100%" /></div>
+            <p class="text-center" style="color:#00C34B;">Welcome to heritage bank cognitive assistant
+                <br/>How may i be of help?
+            </p>
+        </div>
+        <ul class="list-chats" *ngIf="parsed_convo">
+            <div class="" *ngFor="let message of parsed_convo">
+                <li *ngIf="message.class == 'loading'" class="conversation-chat chat-left {{ message.class }}">
+                    <div class="chat">
+                        <div class="chat-avatar"></div>
+                        <div class="chat-body">
+                            <div class="spinner">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                <li *ngIf="message.class == 'capabilities'" class="conversation-chat chat-left">
+                    <div class="chat">
+                        <div class="chat-avatar"></div>
+                        <div class="chat-body">
+                            I can help you with any of the following
+                            <div class="card">
+                                <div class="card-body no-padding">
+                                    <ul class="list divider-full-bleed">
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction" href="#2">
+                                                <div class="tile-icon">
+                                                    <img src="../assets/img/logo/account-opening.png" alt="">
+                                                </div>
+                                                <div class="tile-text"><button (click)="sendConversationMessage('open an account')" class="btn btn-sm btn-raised btn-success">Open an account</button></div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction" href="#2">
+                                                <div class="tile-icon">
+                                                    <img src="../assets/img/logo/pay_bills.png" alt="">
+                                                </div>
+                                                <div class="tile-text"><button (click)="sendConversationMessage('Pay bills')" class="btn btn-sm btn-raised btn-success">Pay your Bills</button></div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction" href="#2">
+                                                <div class="tile-icon">
+                                                    <img src="../assets/img/logo/mobile_topup.png" alt="">
+                                                </div>
+                                                <div class="tile-text"><button (click)="sendConversationMessage('Mobile top up')" class="btn btn-sm btn-raised btn-success">Top up your mobile</button></div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction" href="#2">
+                                                <div class="tile-icon">
+                                                    <img src="../assets/img/logo/card_request.png" alt="">
+                                                </div>
+                                                <div class="tile-text"><button (click)="sendConversationMessage('New card request')" class="btn btn-sm btn-raised btn-success">Request a new card</button></div>
+                                            </a>
+                                        </li>
+                                        <li class="tile">
+                                            <a class="tile-content ink-reaction" href="#2">
+                                                <div class="tile-icon">
+                                                    <img src="../assets/img/logo/locate_atm.jpg" alt="">
+                                                </div>
+                                                <div class="tile-text"><button (click)="sendConversationMessage('Locate nearest atm')" class="btn btn-sm btn-raised btn-success">Locate the nearest ATM</button></div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div><!--end .card-body -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li *ngIf="message.class != 'loading' && message.class != 'capabilities'" class="conversation-chat {{ message.class }}">
+                    <div class="chat">
+                        <div class="chat-avatar"></div>
+                        <div class="chat-body">
+                            {{ message.message }}
+                            <small>{{ message.time }}</small>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+            </div>
+            <li class="conversation-buttons" *ngIf="ButtonVariables" style="clear:both">
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'fetch_mobile_networks'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> What network provider are you using?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('mtn airtime topup')" class="btn btn-sm ink-reaction btn-warning">MTN</button>
+                            <button (click)="sendConversationMessage('glo airtime topup')" class="btn btn-sm ink-reaction btn-primary">GLOBACOM</button>
+                            <button (click)="sendConversationMessage('etisalat airtime topup')" class="btn btn-sm ink-reaction btn-default-dark">ETISALAT</button>
+                            <button (click)="sendConversationMessage('airtel airtime topup')" class="btn btn-sm ink-reaction btn-danger">AIRTEL</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'select_card_options'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> What card would you like to request for?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('I\'ll like a master card')" class="btn btn-sm ink-reaction btn-warning">MASTER CARD</button>
+                            <button (click)="sendConversationMessage('I\'ll like a visa card')" class="btn btn-sm ink-reaction btn-info">VISA CARD</button>
+                            <button (click)="sendConversationMessage('I\'ll like a verve card')" class="btn btn-sm ink-reaction btn-accent">VERVE CARD</button>
+                            <button (click)="helpDecide('card_type')" class="btn btn-sm ink-reaction btn-danger">HELP ME DECIDE</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'fetch_bill_types'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> What bill do you want to pay?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Pay power bill')" class="btn btn-sm ink-reaction btn-warning"><i class="fa fa-bolt"></i> POWER</button>
+                            <button (click)="sendConversationMessage('Pay Water Bill')" class="btn btn-sm ink-reaction btn-primary"><i class="fa fa-tint"></i> WATER</button>
+                            <button (click)="sendConversationMessage('Pay Cable Bill')" class="btn btn-sm ink-reaction btn-default-dark"><i class="fa fa-desktop"></i> CABLE</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'fetch_account_types'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> What type of account would you like to open?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button class="btn btn-sm ink-reaction btn-green" (click)="CreateAccount('Open savings account', 'savings')">SAVINGS</button>
+                            <button class="btn btn-sm ink-reaction btn-info" (click)="CreateAccount('Open current account', 'current')">CURRENT</button>
+                            <button class="btn btn-sm ink-reaction btn-accent" (click)="CreateAccount('Help me decide', 'help')">HELP ME DECIDE</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'locate_resource'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> What are you trying to locate?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Locate nearest bank branch')" class="btn btn-sm ink-reaction btn-primary">Locate Bank Branch</button>
+                            <button (click)="sendConversationMessage('Locate nearest atm')" class="btn btn-sm ink-reaction btn-primary">Locate ATM</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'banking_options'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> Select internet banking option</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Personal internet banking')" style="margin-bottom:10px;" class="btn btn-sm ink-reaction btn-primary">Personal Internet banking</button>
+                            <button (click)="sendConversationMessage('Corporate internet banking')" class="btn btn-sm ink-reaction btn-dark">Corporate internet banking</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'reset_banking_options'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> Select internet banking option you want to reset</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Reset my personal internet banking password')" style="margin-bottom:10px;" class="btn btn-sm ink-reaction btn-primary">Personal Internet banking</button>
+                            <button (click)="sendConversationMessage('Reset my corporate internet banking password')" class="btn btn-sm ink-reaction btn-dark">Corporate internet banking</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'user_types'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> Are you a new user or a returning user?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('I\'m a new user')" class="btn btn-sm ink-reaction btn-primary">New User</button>
+                            <button (click)="sendConversationMessage('I\'m a returning user')" class="btn btn-sm ink-reaction btn-dark">Returning User</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'confirm_appointment'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i>Please confirm your appointment for {{ ExtraParams }}</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="confirmAppointment(true, 'Confirm my appointment for', ExtraParams)" class="btn btn-sm ink-reaction btn-primary">Yes confirm my appointment</button>
+                            <button (click)="confirmAppointment(false, 'No please, I\'ll like to reschedule', ExtraParams)" class="btn btn-sm ink-reaction btn-dark">No i'll like to reschedule</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'phone_os_types'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i>Select your phone operating system?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Android')" class="btn btn-sm ink-reaction btn-green"><i class="fa fa-android"></i> Android</button>
+                            <button (click)="sendConversationMessage('iOS')" class="btn btn-sm ink-reaction btn-primary"><i class="fa fa-apple"></i> iOS (Apple)</button>
+                            <button (click)="sendConversationMessage('Blackberry')" class="btn btn-sm ink-reaction btn-default-dark"><i class="fa fa-blackberry"></i> Blackberry</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'get_nearest_branch'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> Would you like me to help you locate the nearest experience center</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Locate nearest bank branch')" style="" class="btn btn-sm ink-reaction btn-primary">Yes Please help me locate the nearest branch</button>
+                            <button (click)="cancelOperation('No Thanks, i\'m fine')" style="" class="btn btn-sm ink-reaction btn-primary">No thanks i'm fine</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'reset_pass_options'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> Select what password you would like to reset?</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendConversationMessage('Reset my Internet banking password')" class="btn btn-sm ink-reaction btn-primary">Internet banking password</button>
+                            <button (click)="sendConversationMessage('Reset my Mobile banking password')" class="btn btn-sm ink-reaction btn-dark">Mobile Banking password</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                
+                
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'locate_bank_branch' || ConversationAction == 'locate_atm'">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-body style-default-bright">
+                            <button (click)="sendSystemConversationMessage('Use current location', ConversationAction)" class="btn btn-sm ink-reaction btn-primary">Use my current location</button>
+                        </div><!--end .card-body -->
+                    </div><!--end .card -->
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            
+            <li class="conversation-more" *ngIf="MoreVariables">
+                <div class="col-md-12 no-padding">
+					<div class="card card-bordered style-primary">
+						<div class="card-head">
+							<header><i class="fa fa-fw fa-tag"></i> Header</header>
+						</div><!--end .card-head -->
+						<div class="card-body style-default-bright">
+							<p>This section can be used to explain more about a feature/module and also redirect the user to another link.</p>
+			
+						</div><!--end .card-body -->
+                        <div class="card-actionbar">
+							<div class="card-actionbar-row">
+								<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">View more</a>
+								<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-primary ink-reaction">Fill Form</a>
+							</div>
+						</div>
+					</div><!--end .card -->
+				</div>
+                <div class="clearfix"></div>
+            </li>
+            <li class="conversation-image" *ngIf="ImageVariables">
+                <div class="col-md-12 no-padding">
+					<div class="card">
+						<div class="card-body style-default-bright">
+                            <img src="http://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(51).jpg" width="100%" />
+						</div><!--end .card-body -->
+                        <div class="card-actionbar">
+							<div class="card-actionbar-row">
+								<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">View more</a>
+								<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-primary ink-reaction">Fill Form</a>
+							</div>
+						</div>
+					</div><!--end .card -->
+				</div>
+                <div class="clearfix"></div>
+            </li>
+            <li class="conversation-carousel" *ngIf="CarouselVariables" style="clear:both">
+                <div class="container-fluid" *ngIf="ConversationAction == 'fetch_account_types'">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="carousel carousel-showmanymoveone slide" id="itemslider">
+                                <div class="carousel-inner">
+
+                                    <div class="item active">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../assets/img/logo/account-opening.png" width="100%" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Savings Account</h4>
+                                                <p class="card-text">A savings account is one of the simplest types of bank accounts available to consumers, letting you store cash securely and earn interest on your money..</p>
+                                                <a class="btn btn-primary btn-sm waves-effect waves-light" (click)="CreateAccount('Create savings account', 'savings')" >Open Savings account</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="item">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../assets/img/logo/account-opening.png" width="100%" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Current Account</h4>
+                                                <p class="card-text">A current account is great for managing your day-to-day money. You can receive regular payments such as wages, benefits, tax credits or pensions into your account, and set up payments out of your account in whichever way you find convenient.</p>
+                                                <a class="btn btn-primary btn-sm waves-effect waves-light" (click)="CreateAccount('Create current account', 'current')">Open current account</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="slider-control">
+                                    <a class="left carousel-control" href="#itemslider" data-slide="prev"><img style="background:#FFF;" src="https://s12.postimg.org/uj3ffq90d/arrow_left.png" alt="Left" class="img-responsive"></a>
+                                    <a class="right carousel-control" href="#itemslider" data-slide="next"><img style="background:#FFF;" src="https://s12.postimg.org/djuh0gxst/arrow_right.png" alt="Right" class="img-responsive"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid" *ngIf="ConversationAction == 'fetch_card_types'">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="carousel carousel-showmanymoveone slide" id="itemslider">
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../assets/img/logo/mastercard.png" width="100%" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Master Card</h4>
+                                                <p class="card-text">MasterCards features include a no annual fee, rewards and cash back, a low ongoing interest rate or a low introductory interest rate. Mastr card is best used for discounted sales, online ticket bookings.</p>
+                                                <a class="btn btn-primary btn-sm waves-effect waves-light" (click)="sendConversationMessage('I\'ll like a master card')" >Get MasterCard</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../assets/img/logo/visacard.png" width="100%" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Visa Card Account</h4>
+                                                <p class="card-text">Visa cards are accepted by businesses in more than 200 countries and territories wide outreach, Best for shopping and international online transactions.</p>
+                                                <a class="btn btn-primary btn-sm waves-effect waves-light" (click)="sendConversationMessage('I\'ll like a visa card')" >Get VisaCard</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="card">
+                                            <img class="img-fluid" src="../assets/img/logo/vervecard.png" width="100%" alt="Card image cap">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Verve Card</h4>
+                                                <p class="card-text">Verve card allows you to conveniently pay for goods and services on all ATMs, as well as POS, Web, Mobile, Kiosk, PC POS, Voice and bank branches connected to the Interswitch network, best suitable for use within nigeria.</p>
+                                                <a class="btn btn-primary btn-sm waves-effect waves-light" (click)="sendConversationMessage('I\'ll like a verve card')" >Get VerveCard</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="slider-control">
+                                    <a class="left carousel-control" href="#itemslider" data-slide="prev"><img style="background:#FFF;" src="https://s12.postimg.org/uj3ffq90d/arrow_left.png" alt="Left" class="img-responsive"></a>
+                                    <a class="right carousel-control" href="#itemslider" data-slide="next"><img style="background:#FFF;" src="https://s12.postimg.org/djuh0gxst/arrow_right.png" alt="Right" class="img-responsive"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="conversation-maps" *ngIf="MapVariables" style="clear:both">
+                <div class="col-md-12 no-padding">
+                    <div class="card card-bordered style-primary">
+                        <div class="card-head">
+                            <header><i class="fa fa-fw fa-tag"></i> Showing closest bank branches</header>
+                        </div><!--end .card-head -->
+                        <div class="card-body style-default-bright" style="padding:0">
+                            <!--<div class="border-gray height-10"></div>-->
+                            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d126854.69095476139!2d3.341429817127776!3d6.4951903911451145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sheritage+bank!5e0!3m2!1sen!2suk!4v1485854505545" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+                            <!--<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126854.69095476139!2d3.341429817127776!3d6.4951903911451145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xdafebb17471faadd!2sHeritage+Bank!5e0!3m2!1sen!2suk!4v1485855263459" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m26!1m12!1m3!1d7929.390543676434!2d3.430870091741543!3d6.433175369960764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m11!3e0!4m3!3m2!1d6.4366129999999995!2d3.428107!4m5!1s0x103bf5227d41b039%3A0xdafebb17471faadd!2sHeritage+Bank%2C+292B+Ajose+Adeogun+St%2C+Lagos%2C+Nigeria!3m2!1d6.4308480999999995!2d3.4390788!5e0!3m2!1sen!2suk!4v1485863634844" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div><!--end .card-body -->
+                        <div class="card-actionbar">
+                            <div class="card-actionbar-row">
+                                <a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">Get Directions</a>
+                            </div>
+                        </div>
+                    </div><!--end .card -->
+                </div>
+                <div class="clearfix"></div>
+            </li>
+            <li class="conversation-checkboxes" *ngIf="CheckboxVariables" style="clear:both;">
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'fetch_account_types'">
+                    <form class="form">
+                        <div class="card card-bordered style-primary">
+                            <div class="card-head">
+                                <header><i class="fa fa-fw fa-tag"></i> What are your expectations opening this account</header>
+                            </div><!--end .card-head -->
+                            <div class="card-body style-default-bright" style="padding:10px;">
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">Account beneficiary</label>
+                                    <div class="col-sm-11 col-sm-offset-1">
+                                        <div class="radio-styled radio-primary">
+                                            <label><input type="radio" name="ageCategory" value="kids"><span>Kids(8 - 12)</span></label>
+                                        </div>
+                                        <div class="radio-styled radio-success">
+                                            <label><input type="radio" name="ageCategory" value="teens"><span>Teens</span></label>
+                                        </div>
+                                        <div class="radio-styled radio-warning">
+                                            <label><input type="radio" name="ageCategory" value="undergaduates"><span>Undergraduates</span></label>
+                                        </div>
+                                        <div class="radio-styled radio-danger">
+                                            <label><input type="radio" name="ageCategory" checked="" value="adults"><span>Adults</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix" style="padding-top:10px;border-top:solid 1px #EEE;"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-12 control-label">Additional Benefits (Tick all that applies) </label>
+                                    <div class="col-sm-11 col-sm-offset-1">
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option1"><span>LOW COT</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" checked="checked" value="option3"><span>HIGH YTD</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option3"><span>LOW MINIMUM BALANCE</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option2"><span>HIGH INTEREST</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--end .card-body -->
+                            <div class="card-actionbar">
+                                <div class="card-actionbar-row">
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-raised btn-success ink-reaction" (click)="SearchForAccount()">Find Matching Account</a>
+                                </div>
+                            </div>
+                        </div><!--end .card -->
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 no-padding" *ngIf="ConversationAction == 'fetch_card_types'">
+                    <form class="form">
+                        <div class="card card-bordered style-primary">
+                            <div class="card-head">
+                                <header><i class="fa fa-fw fa-tag"></i> What matters to you while getting this card?</header>
+                            </div><!--end .card-head -->
+                            <div class="card-body style-default-bright" style="padding:10px;">
+                                <div class="form-group" style="clear:both">
+                                    <label class="col-sm-12 control-label">Where are you often going to be using the card?</label>
+                                    <div class="col-sm-11 col-sm-offset-1">
+                                        <div class="radio-styled radio-primary">
+                                            <label><input type="radio" name="location" value="local"><span>Locally</span></label>
+                                        </div>
+                                        <div class="radio-styled radio-success">
+                                            <label><input type="radio" name="location" value="teens"><span>Internationally</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="clear:both" >
+                                    <label class="col-sm-12 control-label">Who is going to be using the card?</label>
+                                    <div class="col-sm-11 col-sm-offset-1">
+                                        <div class="radio-styled radio-success">
+                                            <label><input type="radio" name="user" value="teens"><span>Students (undergraduates)</span></label>
+                                        </div>
+                                        <div class="radio-styled radio-danger">
+                                            <label><input type="radio" name="user" checked="" value="adults"><span>Adults</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix" style="padding-top:10px;border-top:solid 1px #EEE;"></div>
+                                <div class="form-group" style="clear:both">
+                                    <label class="col-sm-12 control-label" style="clear:both">Oftentimes what are you going to be using the card for? (Tick all that applies) </label>
+                                    <div class="col-sm-11 col-sm-offset-1" style="margin-top: 30px;">
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option1"><span>Online Shopping</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" checked="checked" value="option3"><span>Purchase Tickets</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option3"><span>Basic transactions</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option2"><span>Cash Transfer</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="clear:both">
+                                    <label class="col-sm-12 control-label" style="clear:both">What card perks are you most interested about? (Tick all that applies) </label>
+                                    <div class="col-sm-11 col-sm-offset-1" style="margin-top: 30px;">
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option1"><span>Cash rewards</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" checked="checked" value="option3"><span>No annual cahrges</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option3"><span>Wider Coverage</span></label>
+                                        </div>
+                                        <div class="checkbox-styled checkbox-success">
+                                            <label><input type="checkbox" value="option2"><span>Exclusive discounts</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--end .card-body -->
+                            <div class="card-actionbar">
+                                <div class="card-actionbar-row">
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-raised btn-success ink-reaction" (click)="SearchForCards()">Find most suitable card</a>
+                                </div>
+                            </div>
+                        </div><!--end .card -->
+                    </form>
+                </div>
+                <div class="clearfix"></div>
+                
+            </li>
+            <li class="conversation-image" *ngIf="StepVariables">
+                <div class="col-md-12 no-padding">
+					<div class="card card-bordered style-primary">
+						<div class="card-body style-default-bright">
+                            <table border=0 class="rectangle-list">
+                                <tr>
+                                    <td>
+                                        <ol>
+                                            <li><p>Visit <a target="blank" href="http://www.hbng.com">www.hbng.com</a>:</p></li>
+                                            <li><p>Go to Internet Banking</p></li>
+                                            <li><p>Select Personal Login</p></li>
+                                            <li><p>Enter your username and click on Forgot Password when prompted.</p></li>
+                                            <li><p>Enter the response to your security question and click “Recover”</p></li>
+                                            <li><p>Your login password will be sent to your registered email address</p></li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </table>
+						</div><!--end .card-body -->
+                        <div class="card-actionbar">
+							<div class="card-actionbar-row">
+								<a href="javascript:void(0);" class="btn btn-sm btn-raised btn-default ink-reaction">Next Steps</a>
+								<a href="javascript:void(0);" (click)="sendEmail()" class="btn btn-sm btn-raised btn-primary ink-reaction">Send an email</a>
+							</div>
+						</div>
+					</div><!--end .card -->
+				</div>
+                <div class="clearfix"></div>
+            </li>
+        </ul>
+    </div></div><div class="nano-pane" style="display: none;"><div class="nano-slider" style="height: 646px; transform: translate(0px, 0px);"></div></div></div><!--end .offcanvas-body -->
+</div>
+<div class=""><a class="triggerswal"></a></div>
+<div class="modal fade"  id="formModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="formModalLabel" aria-hidden="true" style="margin-top: 60px;">
+    <div class="modal-dialog">
+        <div class="modal-content" *ngIf="FormVariables">
+            <div class="modal-header">
+                <button type="button " class="close" (click)="closeModal('formModal', ExtraParams)" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="formModalLabel">Fill the form to continue</h4>
+            </div>
+            <div class="conversation-form"  style="clear:both">
+                <div class="row" *ngIf="ConversationAction == 'fetch_account_form'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">{{ ExtraParams }} Account form</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="rootwizard2" class="form-wizard form-wizard-horizontal">
+                                    <form class="form form-validation" (submit)="submitForm(ExtraParams, 
+                                                                                            title.value, surname.value,firstname.value,othername.value, 
+                                                                                            email.value, maritalStatus.value, phone.value, gender.value, 
+                                                                                            maidenName.value, houseNo.value, street.value, busstop.value,
+                                                                                            city.value,lga.value,state.value,address.value,
+                                                                                            identification.value,
+                                                                                            card_verve.value, card_master.value, card_visa.value,
+                                                                                            statement_email.value, statement_post.value, statement_branch.value,
+                                                                                            ebanking_internet.value, ebanking_mobile.value, ebanking_atm.value,
+                                                                                            bvn.value
+                                                                                            )" 
+                                                                                            
+                                                                                            
+                                                                                            role="form" novalidate="novalidate">
+                                        <div class="form-wizard-nav">
+                                            <div class="progress" style="width: 75%;"><div class="progress-bar progress-bar-primary" style="width: 0%;"></div></div>
+                                            <ul class="nav nav-justified nav-pills">
+                                                <li class="active"><a href="#step1" data-toggle="tab"><span class="step">1</span> <span class="title">PERSONAL</span></a></li>
+                                                <li><a href="#step2" data-toggle="tab"><span class="step">2</span> <span class="title">CONTACT</span></a></li>
+                                                <li><a href="#step3" data-toggle="tab"><span class="step">3</span> <span class="title">IDENTITY</span></a></li>
+                                                <li><a href="#step4" data-toggle="tab"><span class="step">4</span> <span class="title">PREFERENCES</span></a></li>
+                                            </ul>
+                                        </div><!--end .form-wizard-nav -->
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    
+                                                    <select class="form-control input-sm" name="" #title>
+                                                        <option value="mr">Mr</option>
+                                                        <option value="miss">Miss</option>
+                                                        <option value="mrs">Mrs</option>
+                                                    </select>
+                                                    <span class="help-block">This field is required.</span>
+                                                    <label for="occupation" class="control-label">Title</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="surname" name="surname" type="text" #surname class="form-control input-sm" data-rule-minlength="2" required="">
+                                                    <label for="surname" class="control-label">Surname</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="firstname" name="firstname" type="text" #firstname class="form-control input-sm" data-rule-minlength="2" required="">
+                                                    <label for="firstname" class="control-label">First name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="othername" #othername class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="othername-error"><span id="othername-error" class="help-block">This field is required.</span>
+                                                    <label for="othername" class="control-label">Other name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" name="email" #email class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="email-error"><span id="email-error" class="help-block">This field is required.</span>
+                                                    <label for="email" class="control-label">Email</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" name="phone" #phone class="form-control input-sm" data-rule-minlength="2" data-rule-rangelength="[10, 11]" required="" aria-required="true" aria-describedby="phone-error"><span id="phone-error" class="help-block">This field is required.</span>
+                                                    <label for="phone" class="control-label">Phone Number</label>
+                                                </div>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Marital Status</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input checked="checked" required="" type="radio" #maritalStatus name="marital_status" value="single"><span>Single</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input required="" type="radio" #maritalStatus name="marital_status" value="married"><span>Married</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input required="" type="radio" #maritalStatus name="marital_status" value="divorced"><span>Divorced</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Gender</label>
+                                                    <div class="col-sm-12">
+                                                        <label class="radio radio-styled">
+                                                            <input checked="checked" required="" type="radio" #gender name="gender" value="male"><span>Male</span>
+                                                        </label>
+                                                        <label class="radio radio-styled">
+                                                            <input required="" type="radio" #gender name="gender" value="female"><span>Female</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="clear:both">
+                                                    <input name="maiden_name" type="text" #maidenName class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true"><span id="maiden_name-error" class="help-block">This field is required.</span>
+                                                    <label for="maiden_name" class="control-label">Mother's maiden name</label>
+                                                </div>
+                                            </div><!--end #step1 -->
+                                            <div class="tab-pane" id="step2">
+                                                <br>
+                                                <div class="form-group">
+                                                    <input name="house_no" type="text" #houseNo id="address" class="form-control input-sm" aria-required="false">
+                                                    <label for="house_no" class="control-label">House/Plot Number</label>
+                                                </div>
+                                               <div class="form-group">
+                                                    <input name="street" type="text" #street id="street" class="form-control input-sm" required="" aria-required="true">
+                                                    <label for="street" class="control-label">Street Name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="busstop" type="text" required="" #busstop id="busstop" class="form-control input-sm" >
+                                                    <label for="busstop" class="control-label">Nearest Busstop / Landmark</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="city" type="text" #city id="city" class="form-control input-sm" required="" aria-required="true">
+                                                    <label for="city" class="control-label">City/Town</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="lga" type="text" #lga id="lga" class="form-control input-sm" required="" aria-required="true">
+                                                    <label for="lga" class="control-label">LGA</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input name="state" type="text" #state id="state" class="form-control input-sm" required="" aria-required="true">
+                                                    <label for="state" class="control-label">State</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="address" #address required="" id="" class="form-control input-sm"></textarea>
+                                                    <label for="address" class="control-label">Mailing Address</label>
+                                                </div>
+                                            </div><!--end #step2 -->
+                                            <div class="tab-pane" id="step3">
+                                                <br>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Means of Identification</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #identification name="identification" value="national"><span>National ID</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #identification name="identification" value="drivers_license"><span>Drivers License</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #identification name="identification" value="voters_card"><span>Voters Card</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input name="bvn" type="number" #bvn id="bvn" class="form-control input-sm" aria-required="false">
+                                                        <label for="bvn" class="control-label">BVN</label>
+                                                    </div>
+                                                </div>
+                                            </div><!--end #step3 -->
+                                            <div class="tab-pane" id="step4">
+                                                <br>
+                                                <div class="form-group" style="clear:both;margin-bottom: 20px;padding: 20px 0;">
+                                                    <label class="col-sm-3 control-label">Card Preferences</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="checkbox checkbox-styled">
+                                                            <label><input #card_verve type="checkbox" value="verve"><span>Verve Card</span></label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-styled">
+                                                            <label><input #card_master type="checkbox" value="master"><span>Master Card</span></label>
+                                                        </div>
+                                                        <div class="checkbox checkbox-styled">
+                                                            <label><input #card_visa type="checkbox" value="visa"><span>Visa Card</span></label>
+                                                        </div>
+                                                        
+                                                    </div><!--end .col -->
+                                                </div>
+                                                <div class="form-group" style="clear:both;margin-bottom: 20px;padding: 20px 0;">
+                                                    <label class="col-sm-12 control-label">Statement Preferences</label>
+                                                    <div class="col-sm-12">
+                                                        <label class="checkbox-inline checkbox-styled">
+                                                            <input #statement_email name="statement" type="checkbox" value="email"><span>Email</span>
+                                                        </label>
+                                                        <label class="checkbox-inline checkbox-styled">
+                                                            <input #statement_post name="statement" type="checkbox" value="post"><span>Post</span>
+                                                        </label>
+                                                        <label class="checkbox-inline checkbox-styled">
+                                                            <input #statement_branch name="statement" type="checkbox" value="branch"><span>Branch</span>
+                                                        </label>
+                                                    </div><!--end .col -->
+                                                </div>
+                                                <div class="form-group" style="clear:both;margin-bottom: 20px;padding: 20px 0;">
+                                                    <label class="col-sm-12 control-label">E-Banking Preferences</label>
+                                                    <div class="col-sm-12">
+                                                        <label class="checkbox-inline checkbox-styled">
+                                                            <input #ebanking_internet name="e_banking" type="checkbox" value="internet"><span>Internet</span>
+                                                        </label>
+                                                        <label class="checkbox-inline checkbox-styled">
+                                                            <input #ebanking_mobile name="e_banking" type="checkbox" value="mobile_topup"><span>Mobile</span>
+                                                        </label>
+                                                        <label class="checkbox-inline checkbox-styled">
+                                                            <input #ebanking_atm name="e_banking" type="checkbox" value="atm"><span>ATM</span>
+                                                        </label>
+                                                    </div><!--end .col -->
+                                                </div>
+                                            </div><!--end #step4 -->
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class="previous disabled"><a class="btn-raised" href="javascript:void(0);">Previous</a></li>
+                                            <a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', ExtraParams )">Cancel</a>
+                                            <li class="next"><a class="btn-raised" href="javascript:void(0);">Next</a></li>
+                                            <li class="finish hide"><input class="btn btn-success" type="submit" value="Open Savings account" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
+                <div class="row" *ngIf="ConversationAction == 'mobile_topup'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">{{ ExtraParams }} Top up</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="" class="">
+                                    <form class="form form-validation" role="form" novalidate="novalidate">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    <input type="number" name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="firstname-error" aria-invalid="true"><span id="firstname-error" class="help-block">This field is required.</span>
+                                                    <label for="firstname" class="control-label">Phone number</label>
+                                                    <p class="help-block">Enter your {{ ExtraParams }} number.</p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" name="amount" id="" class="form-control input-sm"  required="" aria-required="true" aria-describedby="firstname-error" aria-invalid="true"><span id="firstname-error" class="help-block">This field is required.</span>
+                                                    <label for="amount" class="control-label">Amount</label>
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'cable')">Cancel</a></li>
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Submit" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
+                <div class="row" *ngIf="ConversationAction == 'pay_bills'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">Pay {{ ExtraParams }} Bill</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="" class="">
+                                    <form class="form form-validation" (submit)="submitForm('water', property_ref.value, email.value, phone.value, amount.value)" role="form" novalidate="novalidate" *ngIf="ExtraParams == 'Water'">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    <input type="number" #property_ref name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="property-ref-error" aria-invalid="true"><span id="property-ref-error" class="help-block">This field is required.</span>
+                                                    <label for="property-ref" class="control-label">Property reference number</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" #email name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="email-error" aria-invalid="true"><span id="email-error" class="help-block">This field is required.</span>
+                                                    <label for="email" class="control-label">Email</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #phone name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="phone-error" aria-invalid="true"><span id="phone-error" class="help-block">This field is required.</span>
+                                                    <label for="phone" class="control-label">Phone number</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #amount name="amount" id="" class="form-control input-sm"  required="" aria-required="true" aria-describedby="amount-error" aria-invalid="true"><span id="amount-error" class="help-block">This field is required.</span>
+                                                    <label for="amount" class="control-label">Amount</label>
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'Water')">Cancel</a></li>                                            
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Submit" /></li>
+                                        </ul>
+                                    </form>
+                                    <form class="form form-validation" role="form" novalidate="novalidate" *ngIf="ExtraParams == 'cable'">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    <select id="select1" name="power_disco" #cable class="form-control input-sm">
+                                                        <option value="">&nbsp;</option>
+                                                        <option value="dstv">Dstv</option>
+                                                        <option value="gotv">Gotv</option>
+                                                        <option value="mytv">MyTV</option>
+                                                    </select>
+                                                    <label for="select1">Select your cable provider</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #smartCardNo name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="meter-no-error" aria-invalid="true"><span id="meter-no-error" class="help-block">This field is required.</span>
+                                                    <label for="firstname" class="control-label">Smart Card No</label>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <input type="email" #email name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="email-error" aria-invalid="true"><span id="email-error" class="help-block">This field is required.</span>
+                                                    <label for="email" class="control-label">Email</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #phone name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="phone-error" aria-invalid="true"><span id="phone-error" class="help-block">This field is required.</span>
+                                                    <label for="phone" class="control-label">Phone number</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" name="amount" id="" class="form-control input-sm"  required="" aria-required="true" aria-describedby="firstname-error" aria-invalid="true"><span id="firstname-error" class="help-block">This field is required.</span>
+                                                    <label for="amount" class="control-label">Amount</label>
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'cable')">Cancel</a></li>
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Submit" /></li>
+                                        </ul>
+                                    </form>
+                                    <form class="form form-validation" role="form" (submit)="submitForm('power', disco.value, meterNo.value, email.value, phone.value, amount.value)" novalidate="novalidate" *ngIf="ExtraParams == 'Power'">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    <select id="select1" required="" name="power_disco" #disco class="form-control input-sm">
+                                                        <option value="">&nbsp;</option>
+                                                        <option value="ikedc">Ikeja Distributing Company (IKEDC)</option>
+                                                        <option value="ekodc">Eko Distributing Company (EKODC)</option>
+                                                        <option value="bendc">Benin Distributing Company (BENDC)</option>
+                                                    </select>
+                                                    <label for="select1">Select your Power disco</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #meterNo name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="meter-no-error" aria-invalid="true"><span id="meter-no-error" class="help-block">This field is required.</span>
+                                                    <label for="firstname" class="control-label">Meter No</label>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <input type="email" #email name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="email-error" aria-invalid="true"><span id="email-error" class="help-block">This field is required.</span>
+                                                    <label for="email" class="control-label">Email</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" required="" #phone name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="phone-error" aria-invalid="true"><span id="phone-error" class="help-block">This field is required.</span>
+                                                    <label for="phone" class="control-label">Phone number</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #amount name="amount" id="" class="form-control input-sm"  required="" aria-required="true" aria-describedby="firstname-error" aria-invalid="true"><span id="firstname-error" class="help-block">This field is required.</span>
+                                                    <label for="amount" class="control-label">Amount</label>
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'power')">Cancel</a></li>
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Submit" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
+                <div class="row" *ngIf="ConversationAction == 'fetch_card_form'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">{{ ExtraParams }} form</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="rootwizard2" class="form-wizard form-wizard-horizontal">
+                                    <form class="form form-validation" (submit)="submitForm(ExtraParams+' form', 
+                                                                                            title.value, surname.value,firstname.value,othername.value, 
+                                                                                            email.value, maritalStatus.value, phone.value, gender.value, 
+                                                                                            maidenName.value, occupation.value, profession.value, 
+                                                                                            employer_name.value, employer_address.value, identification.value,
+                                                                                            account_no.value, account_name.value, pickup.value
+                                                                                            )" 
+                                                                                            
+                                                                                            
+                                                                                            role="form" novalidate="novalidate">
+                                        <div class="form-wizard-nav">
+                                            <div class="progress" style="width: 75%;"><div class="progress-bar progress-bar-primary" style="width: 0%;"></div></div>
+                                            <ul class="nav nav-justified nav-pills">
+                                                <li class="active"><a href="#step1" data-toggle="tab"><span class="step">1</span> <span class="title">PERSONAL</span></a></li>
+                                                <li><a href="#step2" data-toggle="tab"><span class="step">2</span> <span class="title">OCCUPATION</span></a></li>
+                                                <li><a href="#step3" data-toggle="tab"><span class="step">3</span> <span class="title">ACCOUNT</span></a></li>
+                                            </ul>
+                                        </div><!--end .form-wizard-nav -->
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    
+                                                    <select class="form-control input-sm" name="" #title>
+                                                        <option value="mr">Mr</option>
+                                                        <option value="miss">Miss</option>
+                                                        <option value="mrs">Mrs</option>
+                                                    </select>
+                                                    <span class="help-block">This field is required.</span>
+                                                    <label for="title" class="control-label">Title</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #surname class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="surname-error"><span id="surname-error" class="help-block">This field is required.</span>
+                                                    <label for="surname" class="control-label">Surname</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #firstname class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="firstname-error"><span id="firstname-error" class="help-block">This field is required.</span>
+                                                    <label for="firstname" class="control-label">First name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #othername class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="othername-error"><span id="othername-error" class="help-block">This field is required.</span>
+                                                    <label for="othername" class="control-label">Other name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #email class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="email-error"><span id="email-error" class="help-block">This field is required.</span>
+                                                    <label for="email" class="control-label">Email</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #phone class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" aria-describedby="phone-error"><span id="phone-error" class="help-block">This field is required.</span>
+                                                    <label for="phone" class="control-label">Phone Number</label>
+                                                </div>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Marital Status</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #maritalStatus name="marital_status" value="single"><span>Single</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #maritalStatus name="marital_status" value="married"><span>Married</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #maritalStatus name="marital_status" value="divorced"><span>Divorced</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Gender</label>
+                                                    <div class="col-sm-12">
+                                                        <label class="radio radio-styled">
+                                                            <input type="radio" #gender name="gender" value="male"><span>Male</span>
+                                                        </label>
+                                                        <label class="radio radio-styled">
+                                                            <input type="radio" #gender name="gender" value="female"><span>Female</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" style="clear:both">
+                                                    <input type="text" #maidenName class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true"><span id="maiden_name-error" class="help-block">This field is required.</span>
+                                                    <label for="maiden_name" class="control-label">Mother's maiden name</label>
+                                                </div>
+                                            </div><!--end #step1 -->
+                                            <div class="tab-pane" id="step2">
+                                                <br>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Occupational Status</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #occupation name="occupation" value="employee"><span>Employee</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #occupation name="occupation" value="self_employed"><span>Self Employed</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #occupation name="occupation" value="umemployed"><span>Unemployed</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #occupation name="occupation" value="student"><span>Student</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #occupation name="occupation" value="others"><span>Others</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #profession id="profession" class="form-control input-sm" aria-required="false">
+                                                    <label for="profession" class="control-label">Occupation / Profession</label>
+                                                </div>
+                                               <div class="form-group">
+                                                    <input type="text" #employer_name id="employer_name" class="form-control input-sm" aria-required="true">
+                                                    <label for="employer_name" class="control-label">Business Employer's Name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="employer_address" #employer_address id="" class="form-control input-sm"></textarea>
+                                                    <label for="employer_address" class="control-label">Business Employer's Address</label>
+                                                </div>
+                                            </div><!--end #step2 -->
+                                            <div class="tab-pane" id="step3">
+                                                <br>
+                                                <div class="form-group" style="clear:both">
+                                                    <label class="col-sm-12 control-label">Means of Identification</label>
+                                                    <div class="col-sm-12">
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #identification name="identification" value="national"><span>National ID</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #identification name="identification" value="drivers_license"><span>Drivers License</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="radio radio-styled">
+                                                            <label>
+                                                                <input type="radio" #identification name="identification" value="voters_card"><span>Voters Card</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #account_no id="account_no" class="form-control input-sm" aria-required="true">
+                                                    <label for="account_no" class="control-label">Account No</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #account_name id="account_name" class="form-control input-sm" aria-required="true">
+                                                    <label for="account_name" class="control-label">Account Name</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" #pickup id="pickup" class="form-control input-sm" aria-required="true">
+                                                    <label for="pickup" class="control-label">Preferred Pickup Location</label>
+                                                </div>
+                                            </div><!--end #step3 -->
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class="previous disabled"><a class="btn-raised" href="javascript:void(0);">Previous</a></li>
+                                            <a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', ExtraParams )">Cancel</a>
+                                            <li class="next"><a class="btn-raised" href="javascript:void(0);">Next</a></li>
+                                            <li class="finish hide"><input class="btn btn-success" type="submit" value="Submit {{ ExtraParams }} form" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
+                <div class="row" *ngIf="ConversationAction == 'sendMail'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">Send a complaint by mail</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="" class="">
+                                    <form class="form form-validation" role="form" novalidate="novalidate" (submit)="submitForm('complaint_form', 
+                                                                                            firstname.value, email.value,phone.value, complaint.value
+                                                                                            )">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="form-group">
+                                                    <input type="text" name="" #firstname class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true" ><span id="firstname-error" class="help-block">This field is required.</span>
+                                                    <label for="firstname" class="control-label">Firstname</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" #email name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true"><span id="email-error" class="help-block">This field is required.</span>
+                                                    <label for="email" class="control-label">Email</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="number" #phone name="" class="form-control input-sm" data-rule-minlength="2" required="" aria-required="true"><span id="phone-error" class="help-block">This field is required.</span>
+                                                    <label for="phone" class="control-label">Phone Number</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea name="complaint" #complaint class="form-control input-sm" required=""></textarea>
+                                                    <label for="amount" class="control-label">Complaint / Request</label>
+                                                    <p class="help-block">Type out your complaint, kindly make it as detailed as possible so that we can understand you.</p>
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'cable')">Cancel</a></li>
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Submit" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
+                <div class="row" *ngIf="ConversationAction == 'account_supporting_docs'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">Upload supporting documents</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="" class="">
+                                    <form class="form form-validation" role="form" novalidate="novalidate" (submit)="submitForm('account_documents', ''
+                                                                                            )">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="card">
+                                                    <div class="card-head">
+                                                        <header>Passport Photograph</header>
+                                                        <div class="tools">
+                                                            <div class="btn-group" data-toggle="buttons" id="toggle-passport">
+                                                                <label class="btn ink-reaction btn-primary btn-sm active">
+                                                                    <input checked="true" id="option1" name="options" type="radio"><i class="fa fa-upload fa-fw"></i>
+                                                                </label>
+                                                                <label class="btn ink-reaction btn-primary btn-sm">
+                                                                    <input id="option3" name="options" type="radio"><i class="fa fa-camera fa-fw"></i>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body" id="toggle-camera-upload">
+                                                        <div class="form-group last">
+                                                            <label class="control-label col-md-3">Upload passport picture</label>
+                                                            <div class="col-md-9">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+                                                                        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt=""> </div>
+                                                                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 10px;"></div>
+                                                                    <div>
+                                                                        <span class="btn btn-info btn-file">
+                                                                            <span class="fileinput-new"> Upload Passport </span>
+                                                                            <span class="fileinput-exists"> Change </span>
+                                                                            <input type="hidden" value="" name="..."><input type="file" name=""> </span>
+                                                                        <a href="javascript:;" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group hide">
+                                                            <input class="form-control" type="file" accept="image/*;capture=camera">
+                                                        </div>
+                                                    </div><!--end .card-body -->
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-head">
+                                                        <header>Upload Identification</header>
+                                                    </div>
+                                                    <div class="card-body" id="toggle-camera-upload">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Identification</label>
+                                                            <div class="col-md-3">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="input-group input-large">
+                                                                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                                            <span class="fileinput-filename"></span>
+                                                                        </div>
+                                                                        <span class="input-group-addon btn btn-info btn-file">
+                                                                            <span class="fileinput-new"> Upload Identification </span>
+                                                                            <span class="fileinput-exists"> Change </span>
+                                                                            <input type="hidden" value="" name="..."><input type="file" name=""> </span>
+                                                                        <a href="javascript:;" class="input-group-addon btn btn-danger fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card">
+                                                    <div class="card-head">
+                                                        <header>Upload Utility</header>
+                                                    </div>
+                                                    <div class="card-body" id="toggle-camera-upload">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-md-3">Utility</label>
+                                                            <div class="col-md-3">
+                                                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                                                    <div class="input-group input-large">
+                                                                        <div class="form-control uneditable-input input-fixed input-medium" data-trigger="fileinput">
+                                                                            <span class="fileinput-filename"></span>
+                                                                        </div>
+                                                                        <span class="input-group-addon btn btn-info btn-file">
+                                                                            <span class="fileinput-new"> Upload Recent utility </span>
+                                                                            <span class="fileinput-exists"> Change </span>
+                                                                            <input type="hidden" value="" name="..."><input type="file" name=""> </span>
+                                                                        <a href="javascript:;" class="input-group-addon btn btn-danger fileinput-exists" data-dismiss="fileinput"> Remove </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'cable')">Cancel</a></li>
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Upload Documents" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                    </div><!--end .col -->
+                </div>
+                <div class="row" *ngIf="ConversationAction == 'account_scheduler'">
+                    <div class="col-lg-12">
+                        <div class="">
+                            <h4 class="text-center" style="color:#00C34B">Schedule a date to walk in to complete the process</h4>
+                        </div>
+                        <div class="card">
+                            <div class="card-body ">
+                                <div id="" class="">
+                                    <form class="form form-validation" role="form" novalidate="novalidate" (submit)="submitForm('complete_account_opening', 
+                                                                                                                        date_scheduled.value
+                                                                                            )">
+                                        <div class="tab-content clearfix">
+                                            <div class="tab-pane active" id="step1">
+                                                <div class="">
+                                                    <div class="card-body">
+                                                        <div clas="form-group">
+                                                            <input type="date" class="form-control" name="date_scheduled" #date_scheduled required="">
+                                                            <em class="text-caption">Schedule an appointment</em>
+                                                        </div>
+                                                    </div><!--end .card-body -->
+                                                </div>
+                                            </div>
+                                        </div><!--end .tab-content -->
+                                        <ul class="pager wizard">
+                                            <li class=""><a href="javascript:void(0);" class="btn btn-default btn-raised" (click)="closeModal('formModal', 'cable')">Cancel</a></li>
+                                            <li class=""><input type="submit"  class="btn btn-success btn-raised" value="Book Appointment" /></li>
+                                        </ul>
+                                    </form>
+                                </div><!--end #rootwizard -->
+                            </div><!--end .card-body -->
+                        </div><!--end .card -->
+                        <script>
+                            $(document).ready(function(){
+                                $('#demo-date-inline').datepicker({todayHighlight: true});
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+ <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 no-padding">
+    <form class="form">
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-btn">
+                    <button class="btn btn-green boot-tooltip" (click)="cancelOperation('i changed my mind, i\'ll like to do something else')" type="button" data-toggle="tooltip" data-placement="top" title="Cancel operation"><i class="fa fa-close"></i></button>
+                </div>
+                <div class="input-group-content">
+                    <input autofocus="" placeholder="Type a message" id="conversationMessage" class="form-control autosize input-sm" #message (keyup.enter)="sendConversationMessage(message.value)" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 38px;padding:0 10px;">
+                </div>
+                <input *ngIf="responseMessage == true" autofocus="" placeholder="{{ responseMessage.placeholder }}" class="form-control autosize" #message (keyup.enter)="systemCOnversationMessage(message.value)" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 38px;padding:0 10px;">
+            </div>
+            
+            <!--<label for="sidebarChatMessage">Leave a message</label>-->
+        </div>
+    </form>
+</div>
